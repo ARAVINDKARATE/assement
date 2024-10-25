@@ -1,16 +1,16 @@
-import 'package:assement/blocs/apod_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../repositories/apod_repository.dart';
+import '../../domain/usecases/get_apod_usecase.dart';
+import 'apod_state.dart';
 
 class ApodCubit extends Cubit<ApodState> {
-  final ApodRepository apodRepository;
+  final GetApodUseCase getApod;
 
-  ApodCubit(this.apodRepository) : super(ApodInitial());
+  ApodCubit(this.getApod) : super(ApodInitial());
 
   Future<void> fetchApod() async {
     try {
       emit(ApodLoading());
-      final apod = await apodRepository.getApod();
+      final apod = await getApod();
       emit(ApodLoaded(apod));
     } catch (e) {
       emit(ApodError('Failed to load APOD.'));

@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/apod_model.dart';
+import '../data/models/apod_model.dart';
 
 class ApodApiService {
   final String _baseUrl = 'https://api.nasa.gov/planetary/apod';
